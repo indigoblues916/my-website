@@ -1,753 +1,478 @@
-vhtml
+html
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ChroniCology Vault | Urban Luxury Fun Zone</title>
-    <style>
-        :root {
-            --bg-black: #050505;
-            --neon-blue: #00f0ff;
-            --neon-pink: #ff007f;
-            --neon-purple: #9400d3;
-            --gold-bling: #ffd700;
-            --text-green: #b3b3b3;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chronicology | Full Custom Catalog, Kicks, Home & UV Lounge</title>
+  <link rel="preconnect" href="https://googleapis.com">
+  <link rel="preconnect" href="https://gstatic.com" crossorigin>
+  <link href="https://googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: #090518;
+      color: #ffffff;
+      min-height: 100vh;
+      padding-bottom: 115px;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Impact', 'Arial Black', 'Chancery';
-        }
+    #uvLivingCanvas {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      z-index: 0;
+      pointer-events: none;
+    }
 
-        body {
-            background-color: var(--bg-black);
-            color: #ffffff;
-            overflow-x: hidden;
-            background-image: radial-gradient(var(--neon-purple) 0.5px, transparent 0.5px), radial-gradient(var(--neon-blue) 0.5px, var(--bg-black) 0.5px);
-            background-size: 40px 40px;
-            background-position: 0 0, 20px 20px;
-        }
+    .floating-art {
+      position: fixed;
+      pointer-events: none;
+      z-index: 1;
+      opacity: 0.24;
+      filter: drop-shadow(0 0 24px rgba(57, 255, 20, 0.65)) drop-shadow(0 0 38px rgba(15, 82, 186, 0.75));
+      animation: floatDream 9s ease-in-out infinite alternate;
+    }
+    .art-1 { top: 95px; left: 2%; width: 140px; }
+    .art-2 { top: 40%; right: 2%; width: 150px; animation-delay: 2s; }
+    .art-3 { bottom: 115px; left: 3%; width: 130px; animation-delay: 4s; }
 
-        .neon-text-blue {
-            text-shadow: 0 0 5px #00f0ff, 0 0 15px #00f0ff, 0 0 30px #00f0ff;
-            color: var(--neon-blue);
-        }
+    @keyframes floatDream {
+      0% { transform: translateY(0px) rotate(-7deg) scale(1); }
+      100% { transform: translateY(-20px) rotate(7deg) scale(1.07); }
+    }
 
-        .neon-text-pink {
-            text-shadow: 0 0 5px #ff007f, 0 0 15px #ff007f, 0 0 30px #ff007f;
-            color: var(--neon-pink);
-        }
+    .chancery-ombre {
+      font-family: 'Cinzel Decorative', 'Apple Chancery', cursive, serif;
+      background: linear-gradient(90deg, #39ff14 0%, #ffd700 22%, #ff8c00 44%, #ff2a85 66%, #00b4ff 84%, #b829ff 100%);
+      background-size: 220% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: ombreFlow 7s linear infinite;
+      filter: drop-shadow(0 4px 18px rgba(0, 180, 255, 0.45));
+    }
+    @keyframes ombreFlow {
+      0% { background-position: 0% center; }
+      100% { background-position: 220% center; }
+    }
 
-        .bling-text {
-            color: var(--gold-bling);
-            text-shadow: 2px 2px 0px #000, -1px -1px 0px #000, 1px -1px 0px #000, -1px 1px 0px #000;
-            letter-spacing: 2px;
-        }
+    .drip-header-wrap { position: relative; z-index: 4; }
+    .marquee-wrap {
+      background: linear-gradient(90deg, #100829, #0c2247, #1c0b3d, #0d2b1d, #100829);
+      color: #ffffff;
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 11px 0;
+      overflow: hidden;
+      white-space: nowrap;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+    .marquee-text {
+      display: inline-block;
+      animation: scrollBanner 30s linear infinite;
+    }
+    @keyframes scrollBanner {
+      0% { transform: translateX(100vw); }
+      100% { transform: translateX(-100%); }
+    }
+    .liquid-drip-svg {
+      display: block;
+      width: 100%;
+      height: 26px;
+      filter: drop-shadow(0 6px 14px rgba(57, 255, 20, 0.55));
+    }
 
-        .floating-bolt {
-            position: fixed;
-            width: 60px;
-            height: 60px;
-            z-index: 100;
-            pointer-events: none;
-            animation: floatAround 12s infinite linear;
-            opacity: 0.8;
-        }
+    header {
+      text-align: center;
+      padding: 26px 20px 22px;
+      position: relative;
+      z-index: 3;
+    }
+    .crest-3d {
+      width: 112px; height: 112px;
+      margin: 0 auto 14px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, rgba(255, 215, 0, 0.3), rgba(15, 82, 186, 0.4) 55%, rgba(12, 5, 28, 0.95));
+      border: 2px solid #ffd700;
+      box-shadow: 0 0 38px rgba(57, 255, 20, 0.45), 0 0 55px rgba(0, 180, 255, 0.4);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .crest-3d svg { width: 68px; height: 68px; }
 
-        @keyframes floatAround {
-            0% { top: 10%; left: 5%; transform: rotate(0deg); }
-            25% { top: 40%; left: 85%; transform: rotate(90deg); }
-            50% { top: 85%; left: 50%; transform: rotate(180deg); }
-            75% { top: 50%; left: 10%; transform: rotate(270deg); }
-            100% { top: 10%; left: 5%; transform: rotate(360deg); }
-        }
+    h1 {
+      font-size: clamp(2.4rem, 6vw, 4.3rem);
+      font-weight: 900;
+      margin-bottom: 10px;
+      letter-spacing: 2px;
+    }
+    .mantra-ribbon {
+      display: inline-block;
+      background: linear-gradient(90deg, rgba(57, 255, 20, 0.14), rgba(255, 215, 0, 0.18), rgba(0, 180, 255, 0.18), rgba(255, 42, 133, 0.14));
+      border: 1px solid rgba(255, 215, 0, 0.55);
+      padding: 8px 22px;
+      border-radius: 50px;
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: #fff6d6;
+      margin-bottom: 14px;
+    }
+    p.subtitle {
+      color: #e8e2fa;
+      font-size: 1.04rem;
+      max-width: 750px;
+      margin: 0 auto 20px;
+      line-height: 1.6;
+    }
 
-        header {
-            background: rgba(5, 5, 5, 0.9);
-            border-bottom: 3px solid var(--neon-pink);
-            padding: 15px 30px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
+    .daily-hub {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
+    }
+    .vault-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(135deg, rgba(15, 82, 186, 0.35), rgba(184, 41, 255, 0.28));
+      border: 1px solid #00b4ff;
+      color: #ffffff;
+      padding: 10px 20px;
+      border-radius: 50px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      backdrop-filter: blur(12px);
+    }
 
-        .logo {
-            font-size: 2.5rem;
-            text-transform: uppercase;
-            font-style: italic;
-        }
+    .section-title {
+      text-align: center;
+      font-size: clamp(1.7rem, 3.6vw, 2.45rem);
+      margin: 38px 0 20px;
+      letter-spacing: 1.5px;
+      position: relative;
+      z-index: 3;
+    }
 
-        .nav-links a {
-            color: #fff;
-            text-decoration: none;
-            margin-left: 20px;
-            font-size: 1.2rem;
-            transition: 0.3s;
-        }
+    .container {
+      max-width: 1260px;
+      margin: 0 auto 45px;
+      padding: 0 22px;
+      position: relative;
+      z-index: 3;
+    }
+    .glass-3d {
+      background: linear-gradient(155deg, rgba(22, 14, 54, 0.85), rgba(10, 20, 36, 0.92));
+      border: 1px solid rgba(255, 215, 0, 0.35);
+      border-top: 2px solid rgba(57, 255, 20, 0.65);
+      border-bottom: 3px solid rgba(0, 180, 255, 0.7);
+      border-radius: 24px;
+      padding: 24px;
+      box-shadow: 0 22px 45px rgba(0, 0, 0, 0.65);
+      backdrop-filter: blur(18px);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+    .glass-3d:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 28px 55px rgba(0, 0, 0, 0.75), 0 0 40px rgba(255, 215, 0, 0.3);
+    }
 
-        .nav-links a:hover {
-            color: var(--neon-blue);
-        }
+    .btn-uv {
+      background: linear-gradient(135deg, #39ff14, #00b4ff);
+      color: #060312;
+      border: none;
+      padding: 10px 18px;
+      font-size: 0.85rem;
+      font-weight: 800;
+      border-radius: 50px;
+      cursor: pointer;
+      margin: 4px;
+      box-shadow: 0 6px 20px rgba(0, 180, 255, 0.4);
+      transition: all 0.2s ease;
+    }
+    .btn-uv:hover { transform: translateY(-2px) scale(1.03); }
+    .btn-gold-bling {
+      background: linear-gradient(135deg, #ffd700, #ff8c00, #ff2a85);
+      color: #ffffff;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+    }
 
-        .hero {
-            padding: 60px 20px;
-            text-align: center;
-            position: relative;
-        }
+    /* Search & Department Filter Bar */
+    .catalog-controls {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 26px;
+    }
+    .search-input {
+      width: 100%;
+      max-width: 480px;
+      padding: 12px 20px;
+      border-radius: 50px;
+      border: 1px solid #ffd700;
+      background: rgba(12, 7, 32, 0.9);
+      color: #ffffff;
+      font-size: 0.95rem;
+      text-align: center;
+      box-shadow: 0 0 20px rgba(255, 215, 0, 0.25);
+    }
+    .dept-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 9px;
+    }
+    .tab-btn {
+      background: rgba(15, 82, 186, 0.28);
+      border: 1px solid rgba(255, 215, 0, 0.5);
+      color: #ffffff;
+      padding: 8px 16px;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 0.83rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .tab-btn.active, .tab-btn:hover {
+      background: linear-gradient(90deg, #39ff14, #ffd700, #ff2a85);
+      color: #070312;
+      border-color: transparent;
+    }
 
-        .hero h1 {
-            font-size: 5rem;
-            margin-bottom: 10px;
-            text-transform: uppercase;
-        }
+    /* Infinite Store Grid */
+    .store-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(275px, 1fr));
+      gap: 24px;
+    }
+    .product-card {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .product-photo-wrap {
+      height: 245px;
+      border-radius: 18px;
+      margin-bottom: 14px;
+      background: radial-gradient(circle, rgba(255,255,255,0.08), rgba(9,5,24,0.9));
+      border: 1px solid rgba(255, 215, 0, 0.45);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: zoom-in;
+    }
+    .product-photo-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.35s ease;
+    }
+    .product-card:hover .product-photo-wrap img { transform: scale(1.06); }
+    .dept-tag {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: rgba(9, 5, 24, 0.88);
+      border: 1px solid #ffd700;
+      color: #ffd700;
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 4px 11px;
+      border-radius: 50px;
+      z-index: 2;
+    }
+    .price-tag {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: #ffd700;
+      margin: 8px 0 10px;
+    }
 
-        .hero p {
-            font-size: 1.5rem;
-            color: var(--text-gray);
-            margin-bottom: 30px;
-        }
+    /* Live Add-More-Designs Drop Box */
+    .designer-drop-panel {
+      margin-top: 32px;
+      border: 2px dashed #39ff14;
+      text-align: center;
+    }
+    .drop-form-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 12px;
+      margin: 16px 0;
+    }
+    .drop-form-row input, .drop-form-row select {
+      padding: 11px 14px;
+      border-radius: 12px;
+      border: 1px solid #00b4ff;
+      background: rgba(11, 7, 28, 0.92);
+      color: #ffffff;
+      font-size: 0.9rem;
+    }
 
-        .music-zone {
-            background: linear-gradient(135deg, rgba(20,20,20,0.9), rgba(5,5,5,0.9));
-            border: 3px solid var(--neon-blue);
-            box-shadow: 0 0 20px var(--neon-blue);
-            max-width: 600px;
-            margin: 0 auto 50px auto;
-            border-radius: 15px;
-            padding: 25px;
-        }
+    /* Fullscreen Zoom Lightbox */
+    .lightbox-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(6, 3, 18, 0.92);
+      z-index: 100;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      backdrop-filter: blur(12px);
+    }
+    .lightbox-content {
+      max-width: 560px;
+      width: 100%;
+      text-align: center;
+    }
+    .lightbox-content img {
+      width: 100%;
+      max-height: 65vh;
+      object-fit: contain;
+      border-radius: 20px;
+      border: 2px solid #ffd700;
+      margin-bottom: 14px;
+    }
 
-        .player-controls {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 20px;
-            margin-top: 15px;
-        }
-
-        .player-btn {
-            background: transparent;
-            border: 2px solid var(--gold-bling);
-            color: var(--gold-bling);
-            padding: 10px 20px;
-            font-size: 1.2rem;
-            cursor: pointer;
-            border-radius: 5px;
-            transition: 0.3s;
-        }
-
-        .player-btn:hover {
-            background: var(--gold-bling);
-            color: #000;
-            box-shadow: 0 0 10px var(--gold-bling);
-        }
-
-        .upload-box {
-            margin-top: 15px;
-            border: 2px dashed var(--text-gray);
-            padding: 15px;
-            cursor: pointer;
-        }
-
-        .store-section {
-            padding: 40px 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .section-title {
-            font-size: 3rem;
-            text-align: center;
-            margin-bottom: 40px;
-            text-transform: uppercase;
-        }
-
-        .product-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-        }
-
-        .product-card {
-            background: #111;
-            border: 2px solid var(--neon-purple);
-            border-radius: 10px;
-            padding: 20px;
-            text-align: center;
-            position: relative;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .product-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 0 20px var(--neon-purple);
-        }
-
-        .product-image-placeholder {
-            width: 100%;
-            height: 250px;
-            background: #222;
-            border-radius: 5px;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-bottom: 3px solid var(--neon-pink);
-        }
-
-        .price-tag {
-            font-size: 1.5rem;
-            margin: 10px 0;
-        }
-
-        .buy-btn {
-            background: var(--neon-pink);
-            color: white;
-            border: none;
-            padding: 12px 25px;
-            font-size: 1.1rem;
-            cursor: pointer;
-            text-transform: uppercase;
-            width: 100%;
-            border-radius: 5px;
-        }
-
-        .quiz-zone {
-            background: #0a0a0a;
-            border: 3px solid var(--gold-bling);
-            max-width: 700px;
-            margin: 50px auto;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 0 25px rgba(255, 215, 0, 0.3);
-        }
-
-        .quiz-option {
-            background: #1a1a1a;
-            border: 2px solid var(--neon-blue);
-            padding: 15px;
-            margin: 10px 0;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: 0.2s;
-            text-align: left;
-        }
-
-        .quiz-option:hover {
-            background: var(--neon-blue);
-            color: #000;
-        }
-
-        .rewards-dashboard {
-            background: #111;
-            border: 2px solid var(--neon-pink);
-            max-width: 400px;
-            margin: 40px auto;
-            padding: 20px;
-            border-radius: 10px;
-            text-align: center;
-        }
-
-        .points-display {
-            font-size: 3.5rem;
-            color: var(--neon-blue);
-            margin: 10px 0;
-        }
-
-        .submission-portal {
-            background: linear-gradient(180deg, #0a0a0a, #111);
-            border: 3px dashed var(--neon-pink);
-            box-shadow: 0 0 15px rgba(255, 0, 127, 0.2);
-            max-width: 800px;
-            margin: 40px auto;
-            padding: 30px;
-            border-radius: 15px;
-            text-align: center;
-        }
-
-        .drop-zone {
-            background: #050505;
-            border: 2px dashed var(--neon-blue);
-            border-radius: 10px;
-            padding: 40px 20px;
-            margin: 20px 0;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        .drop-zone:hover {
-            background: rgba(0, 240, 255, 0.05);
-            box-shadow: 0 0 15px rgba(0, 240, 255, 0.2);
-        }
-
-        .form-input {
-            background: #222;
-            border: 2px solid var(--neon-purple);
-            color: #fff;
-            padding: 12px;
-            width: 100%;
-            margin-bottom: 15
-
-
-px;
-            border-radius: 5px;
-            font-size: 1.1rem;
-        }
-
-        .leaderboard-container {
-            background: #0d0d0d;
-            border: 3px solid var(--gold-bling);
-            max-width: 500px;
-            margin: 40px auto;
-            padding: 25px;
-            border-radius: 12px;
-            box-shadow: 0 0 20px rgba(255, 215, 0, 0.2);
-        }
-
-        .leaderboard-table {
-            width: 100%;
-            margin-top: 15px;
-            border-collapse: collapse;
-        }
-
-        .leaderboard-row {
-            border-bottom: 1px solid #222;
-            transition: 0.2s;
-        }
-
-        .leaderboard-row:hover {
-            background: rgba(255, 215, 0, 0.1);
-        }
-
-        .leaderboard-cell {
-            padding: 12px;
-            font-size: 1.2rem;
-            text-align: left;
-        }
-
-        .rank-num {
-            color: var(--neon-pink);
-            font-weight: bold;
-        }
-
-        .arcade-zone-wrapper {
-            background: #000000;
-            padding: 50px 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .arcade-grid-nav {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-bottom: 35px;
-            flex-wrap: wrap;
-        }
-
-        .game-tab-btn {
-            background: #111;
-            border: 2px solid #222;
-            color: #fff;
-            padding: 12px 28px;
-            font-size: 1.1rem;
-            cursor: pointer;
-            border-radius: 30px;
-            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .game-tab-btn.active-game {
-            border-color: var(--neon-blue);
-            box-shadow: 0 0 15px rgba(0, 240, 255, 0.4);
-            background: #00f0ff;
+    /* Customizer Studio */
+    .customizer-grid {
+      display: grid;
 Use code with caution.
-
-color: #000;
-font-weight: bold;
+grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+gap: 26px;
+align-items: center;
 }
-.game-canvas-container {
-background: linear-gradient(145deg, #0b0b0f, #050507);
-border: 2px solid #1a1a24;
-border-radius: 20px;
-min-height: 550px;
-position: relative;
-padding: 30px;
-display: none;
-box-shadow: 0 20px 40px rgba(0,0,0,0.6);
-}
-.game-canvas-container.active-view {
-display: block;
-}
-.mahjong-board-layer {
-display: grid;
-grid-template-columns: repeat(3, 1fr);
-gap: 15px;
-max-width: 600px;
-margin: 0 auto;
-padding: 20px;
-}
-.bling-tile-asset {
-background: linear-gradient(135deg, #1e1e24, #121215);
-border: 2px solid var(--gold-bling);
-border-radius: 8px;
-aspect-ratio: 3/4;
-cursor: pointer;
+.preview-stage {
+height: 310px;
+border-radius: 22px;
+background: radial-gradient(circle, #181c4b, #090518);
+border: 2px solid #ffd700;
 display: flex;
 flex-direction: column;
 align-items: center;
 justify-content: center;
-position: relative;
-transition: transform 0.2s, box-shadow 0.2s;
-box-shadow: 0 6px 0 #b89200, 0 8px 15px rgba(0,0,0,0.5);
+padding: 20px;
+text-align: center;
 }
-.bling-tile-asset:hover {
-transform: translateY(-4px);
-box-shadow: 0 10px 0 #b89200, 0 12px 20px rgba(0, 240, 255, 0.3);
+#customPreviewImg {
+max-width: 140px; max-height: 140px;
+border-radius: 14px;
+margin-bottom: 12px;
+display: none;
+box-shadow: 0 0 25px rgba(57, 255, 20, 0.65);
 }
-.tile-icon-svg {
-width: 40px;
-height: 40px;
-margin-bottom: 6px;
+.custom-controls label {
+display: block;
+text-align: left;
+font-size: 0.85rem;
+font-weight: 700;
+color: #ffd700;
+margin: 12px 0 6px;
 }
-.rhythm-fall-arena {
+.custom-controls select, .custom-controls input[type="text"], .custom-controls input[type="file"] {
 width: 100%;
-max-width: 500px;
-height: 400px;
-background: #020203;
+padding: 11px 14px;
 border-radius: 12px;
-margin: 0 auto;
-position: relative;
-overflow: hidden;
-border: 1px solid #222;
+border: 1px solid rgba(0, 180, 255, 0.65);
+background: rgba(11, 7, 28, 0.92);
+color: #ffffff;
+font-size: 0.92rem;
 }
-.rhythm-target-bar {
-position: absolute;
-bottom: 40px;
-width: 100%;
-height: 60px;
-border-top: 2px dashed rgba(255, 0, 127, 0.4);
-border-bottom: 2px dashed rgba(255, 0, 127, 0.4);
-background: rgba(255, 0, 127, 0.05);
-}
-.vault-matrix-grid {
+/* Arcade */
+.arcade-grid {
 display: grid;
-grid-template-columns: repeat(3, 1fr);
-gap: 15px;
-max-width: 400px;
-margin: 30px auto;
+grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+gap: 24px;
 }
-.matrix-node-btn {
-background: #111;
-border: 2px solid var(--neon-purple);
-padding: 25px;
-font-size: 1.5rem;
-color: #fff;
+.game-card { text-align: center; }
+.game-card h3 {
+font-family: 'Cinzel Decorative', cursive, serif;
+font-size: 1.3rem;
+margin-bottom: 10px;
+}
+.stat-badge {
+display: inline-block;
+background: rgba(15, 82, 186, 0.32);
+border: 1px solid #00b4ff;
+padding: 5px 14px;
+border-radius: 50px;
+font-weight: 700;
+color: #bae6fd;
+margin: 0 4px 12px;
+font-size: 0.82rem;
+}
+.mahjong-board {
+display: grid;
+grid-template-columns: repeat(4, 1fr);
+gap: 9px;
+max-width: 310px;
+margin: 10px auto 16px;
+}
+.bling-tile {
+height: 64px;
+background: linear-gradient(145deg, #1b174a, #0e0a2b);
+border: 1px solid #ffd700;
+border-bottom: 4px solid #00b4ff;
+border-radius: 14px;
+display: flex; align-items: center; justify-content: center;
 cursor: pointer;
-border-radius: 10px;
-transition: 0.2s;
 }
-.matrix-node-btn:hover {
-background: var(--neon-purple);
-box-shadow: 0 0 15px var(--neon-purple);
+.bling-tile svg { width: 34px; height: 34px; }
+.bling-tile.selected { border-color: #39ff14; box-shadow: 0 0 22px #39ff14; transform: scale(1.07); }
+.bling-tile.matched { opacity: 0.15; pointer-events: none; }
+canvas.game-canvas {
+background: radial-gradient(circle at center, #141842, #070414);
+border: 1px solid rgba(255, 215, 0, 0.55);
+border-radius: 16px;
+display: block;
+margin: 10px auto 14px;
+width: 300px; height: 240px;
 }
-
-
-
-
-THE VAULT
-
-SHOP
-BEATS
-ARCADE
-CUSTOM LAB
-
-
-URBAN LUXURY FUN ZONE
-Custom All-Over Print Apparel • Authentic Hype Beats • Street Culture Miniature Games
-🎧 VAULT SOUNDSTAGE LIVE
-Current Track: Street Symphony Remix
-
-PLAY
-PAUSE
-
-
-⚡ DRAG & DROP CUSTOM SOUNDTRACKS HERE ⚡
-
-
-
-THE DROPS
-
-
-
-Custom Letterman Mockup
-
-VIP Varsity Custom Fleece Jacket
-$120 / 1200 PTS
-Add to Cart
-Embroidered Vest Mockup
-
-Street Elite Waistcoat Vest
-$65 / 650 PTS
-Add to Cart
-Jersey Dress Mockup
-
-Neon Cascade Ruffle Jersey Dress
-$45 / 450 PTS
-Add to Cart
-
-
-
-THE VAULT STYLE QUIZ
-Answer to unlock exclusive drip items and earn bonus points!
-What type of custom aesthetic defines your personal look?
-A) Blacklight Neon Psychedelic Graphics
-B) High-Bling Metallic & Dripping Gold Motifs
-C) Minimalist Sharp Industrial Luxury Layout lines
-D) Bold Vibrant Festival Oversized Casual Coordinates
-
-⚡ THE VAULT PLAY ZONE
-Play custom drops to rack up exclusive loyalty point payouts.
-🀄 BLING MAHJONG
-🎵 DRIP DROP RHYTHM
-🔓 DECRYPT MULTIPLIER
-HIP-HOP BLING MAHJONG DROPS
-
-
-
-BOLT
-
-
-
-CROWN
-
-
-
-DIAMOND
-
-
-
-BOLT
-
-
-
-CROWN
-
-
-
-DIAMOND
-
-
-DRIP DROP RHYTHM SPEEDTAP
-
-
-
-
-THE CORE CODE DECRYPTOR
-
-7
-3
-9
-
-
-
-
-⚡ THE VAULT CUSTOM DESIGN LAB ⚡
-Upload your own graphics and fonts to lock down mockups on our custom apparel layers.
-
-
-
-DRAG & DROP GRAPHICS / FONTS HERE
-
-
-
-SUBMIT DROPS TO REVIEW LAB
-👑 THE VAULT LEADERBOARD
-
-#1
-DripKing_916
-14,250 PTS
-#2
-NeonVibe_958
-11,800 PTS
-#3
-You
-0000 PTS
-YOUR VAULT BALANCE
-0000
-10 Points earned per $1 Spent • Instant Sweepstakes Tokens
-let currentPoints = 0;
-function addPoints(amount) {
-currentPoints += amount;
-document.getElementById('points').innerText = String(currentPoints).padStart(4, '0');
-document.getElementById('leaderboardUserPoints').innerText = String(currentPoints).padStart(4, '0') + " PTS";
+/* Bottom Audio Bar */
+.music-bar {
+position: fixed;
+bottom: 0; left: 0;
+width: 100%;
+background: rgba(10, 6, 26, 0.95);
+border-top: 2px solid #ffd700;
+padding: 14px 28px;
+display: flex;
+justify-content: space-between;
+align-items: center;
+backdrop-filter: blur(18px);
+z-index: 30;
 }
-function selectOption(pointsReward) {
-alert('Preference Locked! Styling customization tags updated.');
-addPoints(pointsReward);
+.track-info {
+font-size: 0.9rem;
+font-weight: 700;
+color: #ffd700;
+display: flex; align-items: center; gap: 10px;
 }
-function switchGameMode(targetId, btnRef) {
-document.querySelectorAll('.game-canvas-container').forEach(view => view.classList.remove('active-view'));
-document.querySelectorAll('.game-tab-btn').forEach(btn => btn.classList.remove('active-game'));
-document.getElementById(targetId).classList.add('active-view');
-btnRef.classList.add('active-game');
+.controls button {
+background: rgba(15, 82, 186, 0.35);
+color: #ffffff;
+border: 1px solid #39ff14;
+padding: 8px 16px;
+margin-left: 8px;
+border-radius: 50px;
+cursor: pointer;
+font-size: 0.82rem;
+font-weight: 700;
 }
-let activeSelectedTile = null;
-function triggerTileMatch(tileElement, assetType) {
-tileElement.style.borderColor = "var(--neon-blue)";
-if (!activeSelectedTile) {
-activeSelectedTile = { element: tileElement, type: assetType };
-} else {
-if (activeSelectedTile.type === assetType && activeSelectedTile.element !== tileElement) {
-alert(🎯 MATCH LOCKED! Cleared ${assetType.toUpperCase()} layer. +250 Vault Points!);
-tileElement.style.visibility = "hidden";
-activeSelectedTile.element.style.visibility = "hidden";
-addPoints(250);
-} else {
-tileElement.style.borderColor = "var(--gold-bling)";
-activeSelectedTile.element.style.borderColor = "var(--gold-bling)";
-}
-activeSelectedTile = null;
-}
-}
-function handleRhythmTap() {
-alert("⚡ BEAT LOCKED IN! Perfect rhythm match timing. +150 Points!");
-addPoints(150);
-}
-let decryptStep = 0;
-function handleMatrixCrack(nodeNum) {
-decryptStep++;
-if(decryptStep >= 2) {
-alert("🔓 VAULT MATRIX BYPASSED! 2X Reward Multiplier Activated!");
-addPoints(500);
-decryptStep = 0;
-} else {
-alert(🔒 Node ${nodeNum} configured. Sequence track advancing...);
-}
-}
-function handleFileSelect(input) {
-const file = input.files[0];
-if (file) {
-document.getElementById('fileUploadPreview').innerText = 📄 STAGED FILE: ${file.name.toUpperCase()};
-}
-}
-function submitCustomDesign() {
-const creator = document.getElementById('creatorName').value;
-const design = document.getElementById('designTitle').value;
-if (!creator || !design) {
-alert('❌ REJECTED: Complete track configurations before dropping data.');
-return;
-}
-alert(🚀 SUCCESS! ${design.toUpperCase()} submitted. +500 Vault Reward Points!);
-addPoints(500);
-}
+.controls button:hover { background: #ffd700; color: #070312; border-color: #ffd700; }
 
 
-<!-- AUTOMATED AUDIO STATION WITH SELECTABLE TRACKLIST MENU -->
-<div class="music-bar-dock" style="display: block; max-width: 750px; margin: 30px auto; border-radius: 16px; padding: 25px;">
-    <div class="audio-info" style="margin-bottom: 20px;">
-        <svg class="cannabis-glow-icon" viewBox="0 0 24 24" fill="none" xmlns="http://w3.org">
-            <path d="M12 2C12 2 13 7 15 9C17 11 22 12 22 12C22 12 17 13 15 15C13 17 12 22 12 22C12 22 11 17 9 15C7 13 2 12 2 12C2 12 7 11 9 9C11 7 12 2 12 2Z" fill="#00ff66"/>
-        </svg>
-        <div>
-            <p style="font-size: 0.9rem; font-family: 'Syncopate', sans-serif; font-weight: 700; letter-spacing: 0.5px;" id="trackNameDisplay">STREAMING AUDIO: INITIALIZING...</p>
-            <p style="font-size: 0.75rem; color: #666;" id="audioStatusText">Autoplay pending activation • Select a track below</p>
-        </div>
-    </div>
-    
-    <!-- Audio Direct Control Deck -->
-    <div class="audio-controls" style="justify-content: center; gap: 20px; margin-bottom: 20px;">
-        <button class="audio-btn" id="playPauseBtn" onclick="togglePlayPause()">▶</button>
-        <button class="audio-btn" id="skipBtn" onclick="skipTrack()">Skip</button>
-        <button class="audio-btn" id="muteBtn" onclick="toggleMute()">🔊</button>
-    </div>
+🌿 CHRONICOLOGY ORIGINAL DESIGNS • BE YOURSELF • LOVE YOURSELF • LOVE THE WORLD • BE KIND • BE GREAT • HUNDREDS OF CUSTOM PIECES & DAILY DROPS 🌿
 
-    <!-- Clickable Interactive Track List Menu Box -->
-    <div style="background: rgba(0,0,0,0.4); border-radius: 8px; padding: 10px; border: 1px solid rgba(255,255,255,0.05);">
-        <p style="font-size: 0.75rem; color: var(--cannabis-green); font-family: 'Syncopate', sans-serif; margin-bottom: 8px; letter-spacing: 1px;">SELECT DECK CUT:</p>
-        <div style="display: flex; flex-direction: column; gap: 5px;">
-            <div style="padding: 10px; background: rgba(255,255,255,0.02); border-radius: 4px; cursor: pointer; font-size: 0.85rem; display: flex; justify-content: space-between;" onclick="loadSpecificTrack(0, 'Orchestral Symphony Intro')">
-                <span>01. Orchestral Symphony Intro</span><span style="color: #666;">Mix Cut 1</span>
-            </div>
-            <div style="padding: 10px; background: rgba(255,255,255,0.02); border-radius: 4px; cursor: pointer; font-size: 0.85rem; display: flex; justify-content: space-between;" onclick="loadSpecificTrack(1, 'Street Strings Cinematic')">
-                <span>02. Street Strings Cinematic</span><span style="color: #666;">Mix Cut 2</span>
-            </div>
-            <div style="padding: 10px; background: rgba(255,255,255,0.02); border-radius: 4px; cursor: pointer; font-size: 0.85rem; display: flex; justify-content: space-between;" onclick="loadSpecificTrack(2, 'The Vault Heavy Brass Outro')">
-                <span>03. The Vault Heavy Brass Outro</span><span style="color: #666;">Mix Cut 3</span>
-            </div>
-        </div>
-    </div>
-</div>
 
-<audio id="vaultAudioEngine" loop style="display: none;">
-    <source src="track1.mp3." type="audio/mpeg">
-    <source src="track2.mp3." type="audio/mpeg">
-    <source src="track3.mp3." type="audio/mpeg">
-    >source src="track4.mp3." type="audio/mpeg"
-></audio>
 
-<!-- CUST_REPLACE: Swap your script audio handling logic block at the bottom with this -->
-<script>
-    const audio = document.getElementById('vaultAudioEngine');
-    let currentTrackIndex = 0;
-    
-    // Exact matching array mapping back to your local desk files on your Mac storage folder
-    const tracks = [
-        { file: "track1.mp3", title: "ORCHESTRAL SYMPHONY INTRO" },
-        { file: "track2.mp3", title: "STREET STRINGS CINEMATIC" },
-        { file: "track3.mp3", title: "THE VAULT HEAVY BRASS OUTRO" }
-    ];
-
-    window.addEventListener('DOMContentLoaded', () => {
-        loadSpecificTrack(0, tracks[0].title);
-    });
-
-    function loadSpecificTrack(index, title) {
-        currentTrackIndex = index;
-        audio.src = tracks[index].file;
-        document.getElementById('trackNameDisplay').innerText = `STREAMING AUDIO: ${title.toUpperCase()}`;
-        document.getElementById('audioStatusText').innerText = "Track loaded • Stream ready";
-        document.getElementById('playPauseBtn').innerText = "▶";
-    }
-
-    function togglePlayPause() {
-        const btn = document.getElementById('playPauseBtn');
-        if (audio.paused) {
-            audio.play().then(() => {
-                btn.innerText = "⏸";
-                document.getElementById('audioStatusText').innerText = "Playing automatically • Loop active";
-            }).catch(() => {
-                alert("Interaction Required: Browser audio safety blocks cleared. Track initializing.");
-            });
-        } else {
-            audio.pause();
-            btn.innerText = "▶";
-            document.getElementById('audioStatusText').innerText = "Audio stream paused";
-        }
-    }/Users/indigobluesways/Desktop/index.html.txt
-
-    function skipTrack() {
-        currentTrackIndex = (currentTrackIndex + 1) % tracks.length;
-        loadSpecificTrack(currentTrackIndex, tracks[currentTrackIndex].title);
-        togglePlayPause();
-    }
-
-    function toggleMute() {
-        const btn = document.getElementById('muteBtn');
-        audio.muted = !audio.muted;
-        btn.innerText = audio.muted ? "🔇" : "🔊";
-    }
-
-    function processCheckout(cashappUrl, pointReward) {
-        alert(`🚀 STAGING CHECKOUT: Forwarding payment link... +${pointReward} Vault Reward Points locked in!`);
-        window.open(cashappUrl, '_blank');
-    }
-</script>
 
