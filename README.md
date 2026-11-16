@@ -4,7 +4,7 @@ vhtml
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Vault | Urban Luxury Fun Zone</title>
+    <title>ChroniCology Vault | Urban Luxury Fun Zone</title>
     <style>
         :root {
             --bg-black: #050505;
